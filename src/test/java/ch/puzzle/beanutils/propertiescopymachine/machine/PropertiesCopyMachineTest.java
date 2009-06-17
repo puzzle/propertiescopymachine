@@ -12,25 +12,25 @@ import org.junit.Test;
 
 import ch.puzzle.beanutils.propertiescopymachine.exceptions.PropertiesCopyMachineException;
 import ch.puzzle.beanutils.propertiescopymachine.modes.DefaultMode;
-import ch.puzzle.beanutils.propertiescopymachine.testmodels.TestModel;
-import ch.puzzle.beanutils.propertiescopymachine.testmodels.UnannotatedSubTestModel;
+import ch.puzzle.beanutils.propertiescopymachine.testmodels.PseudoModel;
+import ch.puzzle.beanutils.propertiescopymachine.testmodels.UnannotatedSubPseudoModel;
 
 /**
  * @author $Author: thomas.rawyler $
  * @version $Revision: 1.2 $ $Date: 2009/06/16 05:47:34 $
  */
 public class PropertiesCopyMachineTest {
-	private TestModel testModelLeft;
-	private TestModel testModelRight;
+	private PseudoModel pseudoModelLeft;
+	private PseudoModel pseudoModelRight;
 
 	@Before
 	public void setUp() {
-		this.testModelLeft = new TestModel();
-		this.testModelLeft.setName("left");
-		this.testModelLeft.setPrename("left");
-		this.testModelRight = new TestModel();
-		this.testModelRight.setName("right");
-		this.testModelRight.setPrename("right");
+		this.pseudoModelLeft = new PseudoModel();
+		this.pseudoModelLeft.setName("left");
+		this.pseudoModelLeft.setPrename("left");
+		this.pseudoModelRight = new PseudoModel();
+		this.pseudoModelRight.setName("right");
+		this.pseudoModelRight.setPrename("right");
 	}
 
 	/**
@@ -42,17 +42,17 @@ public class PropertiesCopyMachineTest {
 		PropertiesCopyMachineImpl propertiesCopyMachine = new PropertiesCopyMachineImpl();
 
 		try {
-			propertiesCopyMachine.setProperties(this.testModelLeft,
-					this.testModelRight, DefaultMode.class);
+			propertiesCopyMachine.setProperties(this.pseudoModelLeft,
+					this.pseudoModelRight, DefaultMode.class);
 		} catch (PropertiesCopyMachineException e) {
 			fail(e.getMessage());
 		}
 
-		assertThat(this.testModelLeft.getName(), is(this.testModelRight
+		assertThat(this.pseudoModelLeft.getName(), is(this.pseudoModelRight
 				.getName()));
 
-		assertThat(this.testModelLeft.getPrename(), is(not(this.testModelRight
-				.getPrename())));
+		assertThat(this.pseudoModelLeft.getPrename(),
+				is(not(this.pseudoModelRight.getPrename())));
 	}
 
 	/**
@@ -64,17 +64,17 @@ public class PropertiesCopyMachineTest {
 		PropertiesCopyMachineImpl propertiesCopyMachine = new PropertiesCopyMachineImpl();
 
 		try {
-			propertiesCopyMachine.setProperties(this.testModelLeft,
-					this.testModelRight);
+			propertiesCopyMachine.setProperties(this.pseudoModelLeft,
+					this.pseudoModelRight);
 		} catch (PropertiesCopyMachineException e) {
 			fail(e.getMessage());
 		}
 
-		assertThat(this.testModelLeft.getName(), is(this.testModelRight
+		assertThat(this.pseudoModelLeft.getName(), is(this.pseudoModelRight
 				.getName()));
 
-		assertThat(this.testModelLeft.getPrename(), is(not(this.testModelRight
-				.getPrename())));
+		assertThat(this.pseudoModelLeft.getPrename(),
+				is(not(this.pseudoModelRight.getPrename())));
 	}
 
 	/**
@@ -86,8 +86,9 @@ public class PropertiesCopyMachineTest {
 		PropertiesCopyMachineImpl propertiesCopyMachine = new PropertiesCopyMachineImpl();
 
 		try {
-			propertiesCopyMachine.setProperties(new UnannotatedSubTestModel(),
-					new UnannotatedSubTestModel());
+			propertiesCopyMachine.setProperties(
+					new UnannotatedSubPseudoModel(),
+					new UnannotatedSubPseudoModel());
 		} catch (PropertiesCopyMachineException e) {
 			// do nothing
 		}
