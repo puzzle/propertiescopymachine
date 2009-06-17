@@ -1,11 +1,20 @@
 package ch.puzzle.beanutils.propertiescopymachine.machine;
 
+import ch.puzzle.beanutils.propertiescopymachine.annotations.PropertiesCopyConfigured;
+import ch.puzzle.beanutils.propertiescopymachine.annotations.PropertiesCopyIncluded;
 import ch.puzzle.beanutils.propertiescopymachine.exceptions.PropertiesCopyMachineException;
 import ch.puzzle.beanutils.propertiescopymachine.modes.PropertiesCopyMode;
 
 /**
- * @author $Author: thomas.rawyler $
- * @version $Revision: 1.3 $ $Date: 2009/06/16 05:47:35 $
+ * The {@link PropertiesCopyMachineImpl} copies properties accessed by getter
+ * methods of an object with all its inherited properties from source to
+ * destination. The {@link PropertiesCopyMachineImpl} will only copy the
+ * properties (getter methods) annotated with {@link PropertiesCopyIncluded}. In
+ * addition you have to annotate the class of the passed object with
+ * {@link PropertiesCopyConfigured}. That is to ensure you have thought through
+ * your problem.
+ * 
+ * @author Thomas Rawyler (rawyler@puzzle.ch)
  */
 public interface PropertiesCopyMachine {
 	/**

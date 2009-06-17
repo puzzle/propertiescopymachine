@@ -16,8 +16,7 @@ import ch.puzzle.beanutils.propertiescopymachine.testmodels.PseudoModel;
 import ch.puzzle.beanutils.propertiescopymachine.testmodels.UnannotatedSubPseudoModel;
 
 /**
- * @author $Author: thomas.rawyler $
- * @version $Revision: 1.2 $ $Date: 2009/06/16 05:47:34 $
+ * @author Thomas Rawyler (rawyler@puzzle.ch)$
  */
 public class PropertiesCopyMachineTest {
 	private PseudoModel pseudoModelLeft;

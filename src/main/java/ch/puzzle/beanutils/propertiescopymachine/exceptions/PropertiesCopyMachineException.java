@@ -1,8 +1,7 @@
 package ch.puzzle.beanutils.propertiescopymachine.exceptions;
 
 /**
- * @author $Author: thomas.rawyler $
- * @version $Revision: 1.1 $ $Date: 2009/06/16 05:47:35 $
+ * @author Thomas Rawyler (rawyler@puzzle.ch)
  */
 public class PropertiesCopyMachineException extends Exception {
 

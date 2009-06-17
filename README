@@ -1,0 +1,10 @@
+PropertiesCopyMachine
+
+Annotation based extension to Apache BeanUtils.
+
+Why?
+I had to face a bug in a large java business application. Somehow, not every property of a bean was copied as desired. I had to dig into some very old code and discovered magic strings :/ Even if those magic strings were extracted in a configuration file, like xml, they would remain hidden. If a new developer would join the team, she would not be aware of those properties that should be copied or excluded.
+
+I checked the Internet and found a nice framework called dozer. As far as I noticed, dozer uses xml configuration files for include and exclude lists for copying beans.
+That's where I started this tiny utility that allows the developer to specify bean copy includes/excludes with annotations. The clear advantage of annotations in this case is that any developer in a project is safe from magic strings that she should have thought of.
+In addition I wanted to be able to specify one or more modes for the properties (eg. depending on the mode, not every property of a bean has to be copied).
