@@ -4,8 +4,17 @@
 	<groupId>ch.puzzle.beanutils</groupId>
 	<artifactId>propertiescopymachine</artifactId>
 	<name>propertiescopymachine</name>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.9.0-BETA</version>
 	<description />
+	<developers>
+		<developer>
+			<id>trawyler</id>
+			<name>Thomas Rawyler</name>
+			<email>rawyler@puzzle.ch</email>
+			<roles>
+			</roles>
+		</developer>
+	</developers>
 
 	<organization>
 		<name>Puzzle ITC GmbH</name>
