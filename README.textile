@@ -1,5 +1,5 @@
 <h2>PropertiesCopyMachine</h2>
-This lightweight extension of Apache BeanUtils enables the user to copy desired properties from one bean to another. It is similar to dozer (http://dozer.sourceforge.net/). Instead of using constant strings of included/excluded properties (in code or xml/config), the PropertiesCopyMachine uses annotations. It is also possible to define custom modes for different copy operations for the same bean.
+This lightweight extension of Apache BeanUtils enables the user to copy desired properties from one bean to another. It is similar to <a href="http://dozer.sourceforge.net">dozer</a>. Instead of using constant strings of included/excluded properties (in code or xml/config), the PropertiesCopyMachine uses annotations. It is also possible to define custom modes for different copy operations for the same bean.
 
 <h2>Example</h2>
 Let's say you have to copy some properties of an item. This is a very fictitious example but it should explain what you can do with it.
