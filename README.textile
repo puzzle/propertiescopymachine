@@ -1,0 +1,109 @@
+<h2>PropertiesCopyMachine</h2>
+This lightweight extension of Apache BeanUtils enables the user to copy desired properties from one bean to another. It is similar to dozer (http://dozer.sourceforge.net/). Instead of using constant strings of included/excluded properties (in code or xml/config), the PropertiesCopyMachine uses annotations. It is also possible to define custom modes for different copy operations for the same bean.
+
+<h2>Example</h2>
+Let's say you have to copy some properties of an item. This is a very fictitious example but it should explain what you can do with it.
+<pre>
+<code>
+...
+@PropertiesCopyConfigured
+public class Item {
+    ...
+    private String name;
+    private String description;
+    private Date releaseDate;
+    ...
+
+    @PropertiesCopyIncluded
+    public String getName(){
+        return this.name;
+    }
+
+    @PropertiesCopyIncluded
+    public String getDescription(){
+        return this.description;
+    }
+
+    public Date getReleaseDate(){
+        return this.releaseDate;
+    }
+
+    ...
+
+    // setters
+}
+</code>
+</pre>
+Given the item class with some of the getters annotated with @PropertiesCopyIncluded@ I'd like to copy only the name and the description of the item.
+You can now start copying those properties from one object to another like this:
+<pre>
+<code>
+...
+PropertiesCopyMachine propertiesCopyMachine = new PropertiesCopyMachineImpl();
+propertiesCopyMachine.setProperties(targetItem, sourceItem);
+...
+</code>
+</pre>
+The @PropertiesCopyMachine@ will copy all the annotated properties of the item class. As you can see, the item class itself is annotated with @PropertiesCopyConfigured@. The @PropertiesCopyMachine@ will throw an exception if you pass an unannotated class because it is not sure that you have thought through your copy mechanism. This annotation is for now not inheritable (could be changed though) because you should think about copying properties on each hierarchy level.
+
+<h2>Example Continued</h2>
+If you wanted to be able to use the item class in different copy processes, you simply have to do this:
+<pre>
+<code>
+// custom mode for copying items
+public interface CopyItemMode extends PropertiesCopyMode { }
+</code>
+</pre>
+<pre>
+<code>
+// custom mode for new versions of items
+public interface NewVersionItemMode extends PropertiesCopyMode { }
+</code>
+</pre>
+<pre>
+<code>
+...
+@PropertiesCopyConfigured
+public class Item {
+    ...
+
+    @PropertiesCopyIncluded({ CopyItemMode.class, NewVersionItemMode.class })
+    public String getName(){
+        return this.name;
+    }
+
+    @PropertiesCopyIncluded(CopyItemMode.class)
+    public String getDescription(){
+        return this.description;
+    }
+
+    public Date getReleaseDate(){
+        return this.releaseDate;
+    }
+
+    ...
+}
+</code>
+</pre>
+Editing the annotations like this will enable the user to the following:
+<pre>
+<code>
+...
+PropertiesCopyMachine propertiesCopyMachine = new PropertiesCopyMachineImpl();
+// this will copy only the properties that are annotated with the CopyItemMode.class
+// in this case name and description
+propertiesCopyMachine.setProperties(targetItem, sourceItem, CopyItemMode.class);
+...
+</code>
+</pre>
+and:
+<pre>
+<code>
+...
+PropertiesCopyMachine propertiesCopyMachine = new PropertiesCopyMachineImpl();
+// this will copy only the properties that are annotated with the NewVersionItemMode.class
+// in this case only the name will be copied
+propertiesCopyMachine.setProperties(targetItem, sourceItem, NewVersionItemMode.class);
+...
+</code>
+</pre>
