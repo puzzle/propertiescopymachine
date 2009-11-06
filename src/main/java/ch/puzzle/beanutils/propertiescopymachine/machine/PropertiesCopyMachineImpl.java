@@ -26,7 +26,8 @@ import ch.puzzle.beanutils.propertiescopymachine.modes.PropertiesCopyMode;
 public class PropertiesCopyMachineImpl implements PropertiesCopyMachine {
 
 	/**
-	 * @param <T>
+	 * @param <D>
+	 * @param <S>
 	 * @param destination
 	 * @param source
 	 * @param includes
@@ -36,7 +37,7 @@ public class PropertiesCopyMachineImpl implements PropertiesCopyMachine {
 	 * @throws InvocationTargetException
 	 * @throws NoSuchMethodException
 	 */
-	protected synchronized <T> void setProperties(T destination, T source,
+	protected synchronized <S, D extends S> void setProperties(D destination, S source,
 			List<PropertyDescriptor> includes) throws IntrospectionException,
 			IllegalAccessException, InvocationTargetException,
 			NoSuchMethodException {
@@ -54,8 +55,8 @@ public class PropertiesCopyMachineImpl implements PropertiesCopyMachine {
 	 * @see najs.util.PropertiesCopyMachine#setProperties(java.lang.Object,
 	 *      java.lang.Object, java.lang.Class)
 	 */
-	public <T, M extends PropertiesCopyMode> void setProperties(T destination,
-			T source, Class<M> propertiesCopyMode)
+	public <S, D extends S, M extends PropertiesCopyMode> void setProperties(D destination,
+			S source, Class<M> propertiesCopyMode)
 			throws PropertiesCopyMachineException {
 		// check if the class has been set up correctly
 		this.checkIfPropertiesCopyIsConfigured(source);
@@ -76,7 +77,7 @@ public class PropertiesCopyMachineImpl implements PropertiesCopyMachine {
 	 * @see najs.util.PropertiesCopyMachine#setProperties(java.lang.Object,
 	 *      java.lang.Object)
 	 */
-	public <T> void setProperties(T destination, T source)
+	public <S, D extends S> void setProperties(D destination, S source)
 			throws PropertiesCopyMachineException {
 		this.setProperties(destination, source, DefaultMode.class);
 	}

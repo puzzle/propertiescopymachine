@@ -23,12 +23,13 @@ public interface PropertiesCopyMachine {
 	 * it because this method has to be sure that the caller understands the
 	 * problem of copying properties.
 	 * 
-	 * @param <T>
+	 * @param <D>
+	 * @param <S>
 	 * @param destination
 	 * @param source
 	 * @throws PropertiesCopyMachineException
 	 */
-	public <T> void setProperties(T destination, T source)
+	public <S, D extends S> void setProperties(D destination, S source)
 			throws PropertiesCopyMachineException;
 
 	/**
@@ -37,14 +38,15 @@ public interface PropertiesCopyMachine {
 	 * it because this method has to be sure that the caller understands the
 	 * problem of copying properties.
 	 * 
-	 * @param <T>
+	 * @param <D>
+	 * @param <S>
 	 * @param <M>
 	 * @param destination
 	 * @param source
 	 * @param propertiesCopyMode
 	 * @throws PropertiesCopyMachineException
 	 */
-	public <T, M extends PropertiesCopyMode> void setProperties(T destination,
-			T source, Class<M> propertiesCopyMode)
+	public <S, D extends S, M extends PropertiesCopyMode> void setProperties(D destination,
+			S source, Class<M> propertiesCopyMode)
 			throws PropertiesCopyMachineException;
 }

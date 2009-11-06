@@ -1,0 +1,18 @@
+# vim
+*.swp
+ 
+# eclipse conf file
+.settings
+.classpath
+.project
+.manager
+
+# tools
+.pmd
+.checkstyle
+ 
+# building
+*.class
+target
+build
+dist
